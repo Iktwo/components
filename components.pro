@@ -18,7 +18,8 @@ OTHER_FILES = qmldir \
     qml/ImageButton.qml \
     qml/Page.qml \
     qml/Theme.qml \
-    qml/TitleBar.qml
+    qml/TitleBar.qml \
+    README.md
 
 qmlfiles.path = $$[QT_INSTALL_QML]/$$replace(uri, \\., /)/qml
 qmlfiles.files += $$files(qml/*)
