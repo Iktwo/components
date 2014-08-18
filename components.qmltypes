@@ -21,7 +21,7 @@ Module {
         Property { name: "titleBarColor"; type: "QColor" }
         Property { name: "titleBarTextColor"; type: "QColor" }
         Method {
-            name: "getContrastYIQ"
+            name: "getContrastColor"
             type: "QVariant"
             Parameter { name: "color"; type: "QVariant" }
         }

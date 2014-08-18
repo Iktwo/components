@@ -19,7 +19,7 @@ Item {
 
         anchors.fill: parent
         opacity: mouseArea.pressed && mouseArea.containsMouse ? pressedOpacity : 0
-        color: root.parent.objectName === "titleBar" ? Theme.getContrastYIQ(root.parent.color) : "#ffffff"
+        color: root.parent.objectName === "titleBar" ? Theme.getContrastColor(root.parent.color) : "#ffffff"
     }
 
     Image {

@@ -5,7 +5,7 @@ QtObject {
     property color titleBarColor: "#738a95"
     property color titleBarTextColor: "#ffffff"
 
-    function getContrastYIQ(color){
+    function getContrastColor(color){
         var colorStr = color.toString().substr(1)
         var r = parseInt(colorStr.substr(0,2),16)
         var g = parseInt(colorStr.substr(2,2),16)
