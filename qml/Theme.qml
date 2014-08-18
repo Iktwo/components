@@ -13,4 +13,21 @@ QtObject {
         var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000
         return (yiq >= 128) ? 'black' : 'white'
     }
+
+    function getBestIconSize(height) {
+        if (height < 42)
+            return "ldpi/"
+        else if (height < 60)
+            return "mdpi/"
+        else if (height < 84)
+            return "hdpi/"
+        else if (height < 120)
+            return "xhdpi/"
+        else if (height < 168)
+            return "xxhdpi/"
+        else if (height < 216)
+            return "xxxhdpi/"
+        else
+            return "";
+    }
 }

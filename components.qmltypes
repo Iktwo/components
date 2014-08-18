@@ -25,5 +25,10 @@ Module {
             type: "QVariant"
             Parameter { name: "color"; type: "QVariant" }
         }
+        Method {
+            name: "getBestIconSize"
+            type: "QVariant"
+            Parameter { name: "height"; type: "QVariant" }
+        }
     }
 }
