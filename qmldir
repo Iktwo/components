@@ -6,3 +6,5 @@ singleton Theme 1.0 qml/Theme.qml
 TitleBar 1.0 qml/TitleBar.qml
 Page 1.0 qml/Page.qml
 ImageButton 1.0 qml/ImageButton.qml
+
+typeinfo components.qmltypes

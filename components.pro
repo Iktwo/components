@@ -20,13 +20,13 @@ OTHER_FILES = qmldir \
     qml/Theme.qml \
     qml/TitleBar.qml \
     README.md \
-    plugins.qmltype
+    components.qmltypes
 
 qmlfiles.path = $$[QT_INSTALL_QML]/$$replace(uri, \\., /)/qml
 qmlfiles.files += $$files(qml/*)
 
 plugininfo.path = $$[QT_INSTALL_QML]/$$replace(uri, \\., /)/
-plugininfo.files += plugins.qmltype
+plugininfo.files += components.qmltypes
 
 !equals(_PRO_FILE_PWD_, $$OUT_PWD) {
     copy_qmldir.target = $$OUT_PWD/qmldir
