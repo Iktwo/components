@@ -4,15 +4,6 @@ import com.iktwo.components 1.0
 Item {
     id: root
 
-    function getContrastYIQ(color){
-        var colorStr = color.toString().substr(1)
-        var r = parseInt(colorStr.substr(0,2),16)
-        var g = parseInt(colorStr.substr(2,2),16)
-        var b = parseInt(colorStr.substr(4,2),16)
-        var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000
-        return (yiq >= 128) ? 'black' : 'white'
-    }
-
     property alias source: image.source
     property alias icon: image
     property double pressedOpacity: 0.5
@@ -28,7 +19,7 @@ Item {
 
         anchors.fill: parent
         opacity: mouseArea.pressed && mouseArea.containsMouse ? pressedOpacity : 0
-        color: root.parent.objectName === "titleBar" ? getContrastYIQ(root.parent.color) : "#ffffff"
+        color: root.parent.objectName === "titleBar" ? Theme.getContrastYIQ(root.parent.color) : "#ffffff"
     }
 
     Image {
