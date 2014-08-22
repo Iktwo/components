@@ -1,5 +1,5 @@
 pragma Singleton
-import QtQuick 2.2
+import QtQuick 2.3
 
 QtObject {
     property color titleBarColor: "#738a95"
