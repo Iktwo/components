@@ -4,6 +4,7 @@ import QtQuick 2.3
 QtObject {
     property color titleBarColor: "#738a95"
     property color titleBarTextColor: "#ffffff"
+    property color backgroundColor: "#e5e5e5"
 
     function getContrastColor(color){
         var colorStr = color.toString().substr(1)
