@@ -47,7 +47,7 @@ Item {
             id: titleLabel
 
             anchors {
-                left: iconSource != "" ? iconImage.right : parent.left; leftMargin: ScreenValues.dpMultiplier * (iconSource != "" ? 8 : 2)
+                left: iconSource != "" ? iconImage.right : parent.left; leftMargin: ScreenValues.dpMultiplier * (iconSource != "" ? 8 : 0)
                 verticalCenter: parent.verticalCenter
             }
 
