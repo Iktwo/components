@@ -5,21 +5,28 @@ FocusScope {
 
     default property alias content: contentItem.data
     property alias titleBar: titleBarContainer.data
+    property bool active: false
 
     signal activated
     signal currentItemChanged
 
     Component.onCompleted: {
-        if (root.parent === null || root.parent.toString().substring(0, 9) !== "StackView")
+        if (root.parent === null || root.parent.toString().substring(0, 9) !== "StackView") {
             root.activated()
+            root.active = true
+        }
     }
 
     Connections {
         target: root.parent !== null && root.parent.toString().substring(0, 9) === "StackView" ? root.parent : root
 
         onCurrentItemChanged: {
-            if (root.parent.currentItem === root)
+            if (root.parent.currentItem === root) {
+                root.active = true
                 root.activated()
+            } else {
+                root.active = false
+            }
         }
     }
 
