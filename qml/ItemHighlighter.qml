@@ -6,6 +6,7 @@ Item {
     property alias highlightOpacity: effect.opacity
     property Item highlightedItem
     property Item mapFrom
+    property bool blockMouseInput: false
 
     property int mappedX: getAbsoluteX(highlightedItem)
     property int mappedY: getAbsoluteY(highlightedItem)
@@ -60,8 +61,8 @@ Item {
         Rectangle {
             x: highlightedItem !== undefined ? mappedX + highlightedItem.width / 2 - width / 2 : 0
             y: highlightedItem !== undefined ? mappedY + highlightedItem.height / 2 - height / 2 : 0
-            width: highlightedItem !== undefined ? highlightedItem.width * 1.4 : 0
-            height: highlightedItem !== undefined ? highlightedItem.height * 1.4 : 0
+            width: highlightedItem !== undefined ? highlightedItem.width * 1.2 : 0
+            height: highlightedItem !== undefined ? highlightedItem.height * 1.2 : 0
             radius: height / 2
         }
     }
@@ -78,13 +79,57 @@ Item {
         id: borderHighlighter
         x: highlightedItem !== undefined ? mappedX + highlightedItem.width / 2 - width / 2 : 0
         y: highlightedItem !== undefined ? mappedY + highlightedItem.height / 2 - height / 2 : 0
-        width: highlightedItem !== undefined ? highlightedItem.width * 1.4 : 0
-        height: highlightedItem !== undefined ? highlightedItem.height * 1.4 : 0
+        width: highlightedItem !== undefined ? highlightedItem.width * 1.2 : 0
+        height: highlightedItem !== undefined ? highlightedItem.height * 1.2 : 0
         radius: Math.min(height, width) / 2
         color: "transparent"
         border {
             width: 3 * ui.dpMultiplier
             color: borderColor
         }
+    }
+
+    MouseArea {
+        anchors {
+            top: borderHighlighter.bottom
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+        }
+
+        enabled: blockMouseInput
+    }
+
+    MouseArea {
+        anchors {
+            top: parent.top
+            bottom: borderHighlighter.top
+            left: parent.left
+            right: parent.right
+        }
+
+        enabled: blockMouseInput
+    }
+
+    MouseArea {
+        anchors {
+            top: parent.top
+            bottom: bottom.top
+            left: borderHighlighter.right
+            right: parent.right
+        }
+
+        enabled: blockMouseInput
+    }
+
+    MouseArea {
+        anchors {
+            top: parent.top
+            bottom: bottom.top
+            left: parent.left
+            right: borderHighlighter.left
+        }
+
+        enabled: blockMouseInput
     }
 }
