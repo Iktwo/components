@@ -3,8 +3,10 @@ plugin components
 
 singleton Theme 1.0 qml/Theme.qml
 
-TitleBar 1.0 qml/TitleBar.qml
-Page 1.0 qml/Page.qml
 ImageButton 1.0 qml/ImageButton.qml
+ItemHighlighter 1.0 qml/ItemHighlighter.qml
+Page 1.0 qml/Page.qml
+SubtractMask 1.0 qml/SubtractMask.qml
+TitleBar 1.0 qml/TitleBar.qml
 
 typeinfo components.qmltypes

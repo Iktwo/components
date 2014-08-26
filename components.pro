@@ -16,7 +16,9 @@ HEADERS += \
 
 OTHER_FILES = qmldir \
     qml/ImageButton.qml \
+    qml/ItemHighlighter.qml \
     qml/Page.qml \
+    qml/SubtractMask.qml \
     qml/Theme.qml \
     qml/TitleBar.qml \
     README.md \
