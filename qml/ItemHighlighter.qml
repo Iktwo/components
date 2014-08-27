@@ -27,6 +27,11 @@ Item {
 
     anchors.fill: parent
 
+    onHighlightedItemChanged: {
+        mappedX = getAbsoluteX(highlightedItem)
+        mappedY = getAbsoluteY(highlightedItem)
+    }
+
     Connections {
         target: highlightedItem
 
