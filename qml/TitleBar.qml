@@ -8,6 +8,7 @@ Item {
 
     property alias color: container.color
     property alias title: titleLabel.text
+    property alias titleLabel: titleLabel
     property alias titleColor: titleLabel.color
     property string iconSource
 
@@ -47,14 +48,11 @@ Item {
             id: titleLabel
 
             anchors {
-                left: iconSource != "" ? iconImage.right : parent.left; leftMargin: ScreenValues.dpMultiplier * (iconSource != "" ? 8 : 0)
+                left: iconSource != "" ? iconImage.right : parent.left; leftMargin: ScreenValues.dpMultiplier * (iconSource != "" ? 0 : 8)
                 verticalCenter: parent.verticalCenter
             }
 
-            font {
-                pixelSize: 18 * ScreenValues.dpMultiplier
-                weight: Font.Light
-            }
+            font.pixelSize: 18 * ScreenValues.dpMultiplier
 
             color: Theme.titleBarTextColor
         }
