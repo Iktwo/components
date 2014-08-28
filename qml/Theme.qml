@@ -32,4 +32,11 @@ QtObject {
         else
             return "";
     }
+
+    function nextNumericState(object) {
+        if (object.state === "")
+            object.state = "0"
+        else if (!isNaN(parseInt(object.state, 10)) && parseInt(object.state, 10) < object.states.length - 1)
+            object.state = parseInt(object.state, 10) + 1
+    }
 }
