@@ -12,6 +12,19 @@ Module {
         Property { name: "isTablet"; type: "bool"; isReadonly: true }
     }
     Component {
+        name: "UpdateChecker"
+        prototype: "QObject"
+        exports: ["com.iktwo.components/UpdateChecker 1.0"]
+        isCreatable: false
+        isSingleton: true
+        Property { name: "packageName"; type: "string"; isReadonly: true }
+        Property { name: "version"; type: "string"; isReadonly: true }
+        Property { name: "latestVersion"; type: "string"; isReadonly: true }
+        Signal { name: "errorDownloading" }
+        Method { name: "checkForUpdateOnGooglePlay" }
+        Method { name: "openPackageOnGooglePlay" }
+    }
+    Component {
         prototype: "QObject"
         name: "Theme"
         exports: ["com.iktwo.components/Theme 1.0"]
@@ -20,6 +33,8 @@ Module {
         isSingleton: true
         Property { name: "titleBarColor"; type: "QColor" }
         Property { name: "titleBarTextColor"; type: "QColor" }
+        Property { name: "backgroundColor"; type: "QColor" }
+        Property { name: "mainTextColor"; type: "QColor" }
         Method {
             name: "getContrastColor"
             type: "QVariant"
@@ -29,6 +44,11 @@ Module {
             name: "getBestIconSize"
             type: "QVariant"
             Parameter { name: "height"; type: "QVariant" }
+        }
+        Method {
+            name: "nextNumericState"
+            type: "QVariant"
+            Parameter { name: "object"; type: "QVariant" }
         }
     }
 }
