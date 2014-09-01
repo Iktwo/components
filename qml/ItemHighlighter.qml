@@ -89,7 +89,7 @@ Item {
         radius: Math.min(height, width) / 2
         color: "transparent"
         border {
-            width: 3 * ui.dpMultiplier
+            width: 3 * ScreenValues.dpMultiplier
             color: borderColor
         }
     }
