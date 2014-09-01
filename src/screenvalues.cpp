@@ -3,12 +3,17 @@
 #include <QScreen>
 #include <QGuiApplication>
 
+#ifdef Q_OS_ANDROID
+#include <QAndroidJniEnvironment>
+#include <QAndroidJniObject>
+#endif
+
 ScreenValues::ScreenValues(QObject *parent) :
     QObject(parent),
     m_dpi(0),
     m_isTablet(false)
 {
-    m_dpi = QGuiApplication::primaryScreen()->physicalDotsPerInch();
+    m_dpi = retrieveDpi();
 
     m_dpMultiplier = (float) m_dpi / 160;
 }
@@ -55,4 +60,35 @@ void ScreenValues::setIsTablet(bool isTablet)
 
     m_isTablet = isTablet;
     emit isTabletChanged();
+}
+
+int ScreenValues::retrieveDpi()
+{
+#ifdef Q_OS_ANDROID
+    QAndroidJniEnvironment env;
+    QAndroidJniObject activity = QAndroidJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative",
+                                                                           "activity",
+                                                                           "()Landroid/app/Activity;");
+    jclass activityClass = env->GetObjectClass(activity.object<jobject>());
+
+    jmethodID mIDGetResources = env->GetMethodID(activityClass,
+                                                   "getResources",
+                                                   "()Landroid/content/res/Resources;");
+
+    jobject resources = env->CallObjectMethod(activity.object<jobject>(), mIDGetResources);
+    jclass resourcesClass = env->GetObjectClass(resources);
+
+    jmethodID mIDGetDisplayMetrics = env->GetMethodID(resourcesClass,
+                                                      "getDisplayMetrics",
+                                                      "()Landroid/util/DisplayMetrics;");
+
+    jobject displayMetrics = env->CallObjectMethod(resources, mIDGetDisplayMetrics);
+    jclass displayMetricsClass = env->GetObjectClass(displayMetrics);
+
+    jfieldID fIDDensityDpi = env->GetFieldID(displayMetricsClass, "densityDpi", "I");
+    jint densityDpi = env->GetIntField(displayMetrics, fIDDensityDpi);
+    return densityDpi;
+#else
+    return QGuiApplication::primaryScreen()->physicalDotsPerInch();
+#endif
 }

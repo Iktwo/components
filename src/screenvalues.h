@@ -30,6 +30,8 @@ private:
     int m_dpi;
     float m_dpMultiplier;
     bool m_isTablet;
+
+    int retrieveDpi();
 };
 
 #endif // SCREENVALUES_H
