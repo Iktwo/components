@@ -1,6 +1,12 @@
 TEMPLATE = lib
 TARGET = components
+
 QT += qml quick
+
+android {
+    QT += androidextras
+}
+
 CONFIG += qt plugin
 
 TARGET = $$qtLibraryTarget($$TARGET)
@@ -8,11 +14,13 @@ uri = com.iktwo.components
 
 SOURCES += \
     src/components_plugin.cpp \
-    src/screenvalues.cpp
+    src/screenvalues.cpp \
+    src/updatechecker.cpp
 
 HEADERS += \
     src/components_plugin.h \
-    src/screenvalues.h
+    src/screenvalues.h \
+    src/updatechecker.h
 
 OTHER_FILES = qmldir \
     qml/ImageButton.qml \
