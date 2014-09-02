@@ -15,8 +15,14 @@ const char *URLLanguage = "&hl=en";
 QString jstringToQString(jstring string)
 {
     QAndroidJniEnvironment env;
+    env->PushLocalFrame(2);
+
     jboolean jfalse = false;
-    return QString(env->GetStringUTFChars(string, &jfalse));
+    QString result = env->GetStringUTFChars(string, &jfalse);
+
+    env->PopLocalFrame(NULL);
+
+    return result;
 }
 #endif
 
@@ -34,6 +40,8 @@ QString UpdateChecker::retrievePackageName()
 {
 #ifdef Q_OS_ANDROID
     QAndroidJniEnvironment env;
+    env->PushLocalFrame(5);
+
     QAndroidJniObject activity = QAndroidJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative",
                                                                            "activity",
                                                                            "()Landroid/app/Activity;");
@@ -45,7 +53,11 @@ QString UpdateChecker::retrievePackageName()
 
     jstring packageName = (jstring)env->CallObjectMethod(activity.object<jobject>(), mIDGetPackageName);
 
-    return jstringToQString(packageName);
+    QString result = jstringToQString(packageName);
+
+    env->PopLocalFrame(NULL);
+
+    return result;
 #else
     return "";
 #endif
@@ -55,6 +67,8 @@ QString UpdateChecker::retrieveVersion()
 {
 #ifdef Q_OS_ANDROID
     QAndroidJniEnvironment env;
+    env->PushLocalFrame(11);
+
     QAndroidJniObject activity = QAndroidJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative",
                                                                            "activity",
                                                                            "()Landroid/app/Activity;");
@@ -82,7 +96,11 @@ QString UpdateChecker::retrieveVersion()
     jfieldID fIDVersionName = env->GetFieldID(packageInfoClass, "versionName", "Ljava/lang/String;");
     jstring versionName = (jstring)env->GetObjectField(packageInfo, fIDVersionName);
 
-    return jstringToQString(versionName);
+    QString result = jstringToQString(versionName);
+
+    env->PopLocalFrame(NULL);
+
+    return result;
 #else
     return "";
 #endif

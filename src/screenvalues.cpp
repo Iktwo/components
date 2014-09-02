@@ -66,6 +66,8 @@ int ScreenValues::retrieveDpi()
 {
 #ifdef Q_OS_ANDROID
     QAndroidJniEnvironment env;
+    env->PushLocalFrame(9);
+
     QAndroidJniObject activity = QAndroidJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative",
                                                                            "activity",
                                                                            "()Landroid/app/Activity;");
@@ -87,7 +89,12 @@ int ScreenValues::retrieveDpi()
 
     jfieldID fIDDensityDpi = env->GetFieldID(displayMetricsClass, "densityDpi", "I");
     jint densityDpi = env->GetIntField(displayMetrics, fIDDensityDpi);
-    return densityDpi;
+
+    int result = (int)densityDpi;
+
+    env->PopLocalFrame(NULL);
+
+    return result;
 #else
     return QGuiApplication::primaryScreen()->physicalDotsPerInch();
 #endif
