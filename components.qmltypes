@@ -2,6 +2,13 @@ import QtQuick.tooling 1.1
 
 Module {
     Component {
+        name: "ConnectivityManager"
+        prototype: "QObject"
+        exports: ["com.iktwo.components/ConnectivityManager 1.0"]
+        Property { name: "connectionType"; type: "string"; isReadonly: true }
+        Method { name: "retrieveConnectionType"; type: "string" }
+    }
+    Component {
         name: "ScreenValues"
         prototype: "QObject"
         exports: ["com.iktwo.components/ScreenValues 1.0"]
