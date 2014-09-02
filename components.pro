@@ -15,12 +15,16 @@ uri = com.iktwo.components
 SOURCES += \
     src/components_plugin.cpp \
     src/screenvalues.cpp \
-    src/updatechecker.cpp
+    src/updatechecker.cpp \
+    src/connectivitymanager.cpp \
+    src/packagemanager.cpp
 
 HEADERS += \
     src/components_plugin.h \
     src/screenvalues.h \
-    src/updatechecker.h
+    src/updatechecker.h \
+    src/connectivitymanager.h \
+    src/packagemanager.h
 
 OTHER_FILES = qmldir \
     qml/ImageButton.qml \
