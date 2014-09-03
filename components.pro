@@ -5,6 +5,12 @@ QT += qml quick
 
 android {
     QT += androidextras
+
+    SOURCES += \
+        src/jniutils.cpp
+
+    HEADERS += \
+        src/jniutils.h
 }
 
 CONFIG += qt plugin
