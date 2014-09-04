@@ -1,5 +1,9 @@
 #include "updatechecker.h"
 
+#ifdef Q_OS_ANDROID
+#include "jniutils.h"
+#endif
+
 #include <QNetworkRequest>
 #include <QDesktopServices>
 
@@ -10,21 +14,6 @@
 
 const char *GooglePlayURL = "https://play.google.com/store/apps/details?id=";
 const char *URLLanguage = "&hl=en";
-
-#ifdef Q_OS_ANDROID
-QString jstringToQString(jstring string)
-{
-    QAndroidJniEnvironment env;
-    env->PushLocalFrame(2);
-
-    jboolean jfalse = false;
-    QString result = env->GetStringUTFChars(string, &jfalse);
-
-    env->PopLocalFrame(NULL);
-
-    return result;
-}
-#endif
 
 UpdateChecker::UpdateChecker(QObject *parent) :
     QObject(parent)
@@ -53,7 +42,7 @@ QString UpdateChecker::retrievePackageName()
 
     jstring packageName = (jstring)env->CallObjectMethod(activity.object<jobject>(), mIDGetPackageName);
 
-    QString result = jstringToQString(packageName);
+    QString result = JNIUtils::jstringToQString(packageName);
 
     env->PopLocalFrame(NULL);
 
@@ -96,7 +85,7 @@ QString UpdateChecker::retrieveVersion()
     jfieldID fIDVersionName = env->GetFieldID(packageInfoClass, "versionName", "Ljava/lang/String;");
     jstring versionName = (jstring)env->GetObjectField(packageInfo, fIDVersionName);
 
-    QString result = jstringToQString(versionName);
+    QString result = JNIUtils::jstringToQString(versionName);
 
     env->PopLocalFrame(NULL);
 
