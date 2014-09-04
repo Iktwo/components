@@ -10,7 +10,7 @@ PackageManager::PackageManager(QObject *parent) :
 {
 }
 
-bool PackageManager::hasPermission(const QString &permission)
+bool PackageManager::packageHasPermission(const QString &package, const QString &permission)
 {
 #ifdef Q_OS_ANDROID
     QAndroidJniEnvironment env;
@@ -20,12 +20,7 @@ bool PackageManager::hasPermission(const QString &permission)
                                                                            "()Landroid/app/Activity;");
     jclass activityClass = env->GetObjectClass(activity.object<jobject>());
 
-    jmethodID mIDGetPackageName = env->GetMethodID(activityClass,
-                                                   "getPackageName",
-                                                   "()Ljava/lang/String;");
-
-    jstring packageName = (jstring)env->CallObjectMethod(activity.object<jobject>(),
-                                                         mIDGetPackageName);
+    QAndroidJniObject jpackage = QAndroidJniObject::fromString(package);
 
     jmethodID mIDGetPackageManager = env->GetMethodID(activityClass,
                                                       "getPackageManager",
@@ -51,12 +46,44 @@ bool PackageManager::hasPermission(const QString &permission)
 
     QAndroidJniObject jpermission = QAndroidJniObject::fromString(permission);
 
-    int jresult = (int)env->CallIntMethod(packageManager, mIDCheckPermission, jpermission.object<jstring>(), packageName);
+    int jresult = (int)env->CallIntMethod(packageManager, mIDCheckPermission, jpermission.object<jstring>(), jpackage.object<jstring>());
     bool result = jresult == PERMISSION_GRANTED;
 
     env->PopLocalFrame(NULL);
 
     return result;
+#else
+    Q_UNUSED(permission)
+    Q_UNUSED(package)
+    return false;
+#endif
+}
+
+bool PackageManager::hasPermission(const QString &permission)
+{
+#ifdef Q_OS_ANDROID
+    QAndroidJniEnvironment env;
+    env->PushLocalFrame(6);
+
+    QAndroidJniObject activity = QAndroidJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative",
+                                                                           "activity",
+                                                                           "()Landroid/app/Activity;");
+
+    jclass activityClass = env->GetObjectClass(activity.object<jobject>());
+
+
+    jmethodID mIDGetPackageName = env->GetMethodID(activityClass,
+                                                   "getPackageName",
+                                                   "()Ljava/lang/String;");
+
+    jstring jpackage = (jstring)env->CallObjectMethod(activity.object<jobject>(),
+                                                      mIDGetPackageName);
+
+    jboolean jfalse = false;
+    QString package = env->GetStringUTFChars(jpackage, &jfalse);
+    env->PopLocalFrame(NULL);
+
+    return packageHasPermission(package, permission);
 #else
     Q_UNUSED(permission)
     return false;

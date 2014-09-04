@@ -4,6 +4,7 @@
 
 #include "connectivitymanager.h"
 #include "downloadmanager.h"
+#include "packagemanager.h"
 #include "updatechecker.h"
 #include "screenvalues.h"
 
@@ -21,6 +22,7 @@ void ComponentsPlugin::registerTypes(const char *uri)
     // @uri com.iktwo.components
     qmlRegisterType<ConnectivityManager>(uri, 1, 0, "ConnectivityManager");
     qmlRegisterType<DownloadManager>(uri, 1, 0, "DownloadManager");
+    qmlRegisterType<PackageManager>(uri, 1, 0, "PackageManager");
     qmlRegisterType<UpdateChecker>(uri, 1, 0, "UpdateChecker");
     qmlRegisterSingletonType<ScreenValues>(uri, 1, 0, "ScreenValues", screen_values_provider);
 }

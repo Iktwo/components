@@ -9,11 +9,8 @@ class PackageManager : public QObject
 public:
     explicit PackageManager(QObject *parent = 0);
 
-    static bool hasPermission(const QString &permission);
-signals:
-
-public slots:
-
+    Q_INVOKABLE static bool packageHasPermission(const QString &package, const QString &permission);
+    Q_INVOKABLE static bool hasPermission(const QString &permission);
 };
 
 #endif // PACKAGEMANAGER_H
