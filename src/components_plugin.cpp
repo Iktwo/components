@@ -7,15 +7,6 @@
 #include "updatechecker.h"
 #include "screenvalues.h"
 
-static QObject *update_checker_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
-{
-    Q_UNUSED(engine)
-    Q_UNUSED(scriptEngine)
-
-    UpdateChecker *updateChecker = new UpdateChecker();
-    return updateChecker;
-}
-
 static QObject *screen_values_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
     Q_UNUSED(engine)
@@ -30,6 +21,6 @@ void ComponentsPlugin::registerTypes(const char *uri)
     // @uri com.iktwo.components
     qmlRegisterType<ConnectivityManager>(uri, 1, 0, "ConnectivityManager");
     qmlRegisterType<DownloadManager>(uri, 1, 0, "DownloadManager");
-    qmlRegisterSingletonType<UpdateChecker>(uri, 1, 0, "UpdateChecker", update_checker_provider);
+    qmlRegisterType<UpdateChecker>(uri, 1, 0, "UpdateChecker");
     qmlRegisterSingletonType<ScreenValues>(uri, 1, 0, "ScreenValues", screen_values_provider);
 }

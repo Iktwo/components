@@ -22,8 +22,6 @@ Module {
         name: "UpdateChecker"
         prototype: "QObject"
         exports: ["com.iktwo.components/UpdateChecker 1.0"]
-        isCreatable: false
-        isSingleton: true
         Property { name: "packageName"; type: "string"; isReadonly: true }
         Property { name: "version"; type: "string"; isReadonly: true }
         Property { name: "latestVersion"; type: "string"; isReadonly: true }
