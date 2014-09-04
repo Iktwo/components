@@ -1,9 +1,6 @@
 #include "connectivitymanager.h"
 
 #include "packagemanager.h"
-#ifdef Q_OS_ANDROID
-#include "jniutils.h"
-#endif
 
 #include <QDebug>
 
@@ -12,7 +9,7 @@
 #include <QAndroidJniObject>
 #endif
 
-const char *NetworkStateAccessPermission = "android.permission.ACCESS_NETWORK_STATE";
+const char *NetworkAccessPermission = "android.permission.ACCESS_NETWORK_STATE";
 
 ConnectivityManager::ConnectivityManager(QObject *parent) :
     QObject(parent)
@@ -29,15 +26,21 @@ QString ConnectivityManager::retrieveConnectionType()
                                                                            "activity",
                                                                            "()Landroid/app/Activity;");
 
-    if (!PackageManager::hasPermission(NetworkStateAccessPermission)) {
-        qWarning() << "Package has no permission to access NetworkState, please add " + QString(NetworkStateAccessPermission);
+    if (!PackageManager::hasPermission(NetworkAccessPermission)) {
+        qWarning() << "Package has no permission to access NetworkState, please add " + QString(NetworkAccessPermission);
         return "";
     }
 
     jclass activityClass = env->GetObjectClass(activity.object<jobject>());
 
-    QAndroidJniObject jconnectivityServiceString = QAndroidJniObject::fromString(JNIUtils::getServiceString("CONNECTIVITY_SERVICE"));
+    jclass contextClass = env->FindClass("android/content/Context");
 
+    jfieldID fIDConnectivityService = env->GetStaticFieldID(contextClass,
+                                                            "CONNECTIVITY_SERVICE",
+                                                            "Ljava/lang/String;");
+
+    jstring connectivityServiceString = (jstring)env->GetStaticObjectField(contextClass,
+                                                                           fIDConnectivityService);
 
     jmethodID mIDGetApplicationContext = env->GetMethodID(activityClass,
                                                           "getApplicationContext",
@@ -54,7 +57,7 @@ QString ConnectivityManager::retrieveConnectionType()
 
     jobject connectivityManager = env->CallObjectMethod(appContext,
                                                         mIDGetSystemService,
-                                                        jconnectivityServiceString.object<jstring>());
+                                                        connectivityServiceString);
 
     jclass connectivityManagerClass = env->GetObjectClass(connectivityManager);
 
