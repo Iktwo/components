@@ -23,14 +23,16 @@ SOURCES += \
     src/screenvalues.cpp \
     src/updatechecker.cpp \
     src/connectivitymanager.cpp \
-    src/packagemanager.cpp
+    src/packagemanager.cpp \
+    src/downloadmanager.cpp
 
 HEADERS += \
     src/components_plugin.h \
     src/screenvalues.h \
     src/updatechecker.h \
     src/connectivitymanager.h \
-    src/packagemanager.h
+    src/packagemanager.h \
+    src/downloadmanager.h
 
 OTHER_FILES = qmldir \
     qml/ImageButton.qml \
