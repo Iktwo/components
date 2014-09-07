@@ -1,4 +1,5 @@
 import QtQuick 2.3
+import com.iktwo.components 1.0
 
 Item {
     property alias color: bakground.color
