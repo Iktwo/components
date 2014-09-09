@@ -39,7 +39,7 @@ Item {
                 anchors.centerIn: parent
                 height: 32 * ScreenValues.dpMultiplier
                 width: 32 * ScreenValues.dpMultiplier
-                source: iconSource != "" ? "qrc:/images/" + Theme.getBestIconSize(height) + iconSource : ""
+                source: iconSource != "" ? iconSource : ""
             }
         }
 
