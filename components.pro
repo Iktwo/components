@@ -41,6 +41,7 @@ OTHER_FILES = qmldir \
     qml/SubtractMask.qml \
     qml/Theme.qml \
     qml/TitleBar.qml \
+    qml/Dialog.qml \
     README.md \
     components.qmltypes
 

@@ -8,5 +8,6 @@ ItemHighlighter 1.0 qml/ItemHighlighter.qml
 Page 1.0 qml/Page.qml
 SubtractMask 1.0 qml/SubtractMask.qml
 TitleBar 1.0 qml/TitleBar.qml
+Dialog 1.0 qml/Dialog.qml
 
 typeinfo components.qmltypes
