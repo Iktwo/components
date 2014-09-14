@@ -24,7 +24,8 @@ SOURCES += \
     src/updatechecker.cpp \
     src/connectivitymanager.cpp \
     src/packagemanager.cpp \
-    src/downloadmanager.cpp
+    src/downloadmanager.cpp \
+    src/applicationinfo.cpp
 
 HEADERS += \
     src/components_plugin.h \
@@ -32,7 +33,8 @@ HEADERS += \
     src/updatechecker.h \
     src/connectivitymanager.h \
     src/packagemanager.h \
-    src/downloadmanager.h
+    src/downloadmanager.h \
+    src/applicationinfo.h
 
 OTHER_FILES = qmldir \
     qml/ImageButton.qml \
