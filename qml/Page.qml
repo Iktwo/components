@@ -14,6 +14,7 @@ FocusScope {
         if (root.parent === null || root.parent.toString().substring(0, 9) !== "StackView") {
             root.activated()
             root.active = true
+            root.focus = true
         }
     }
 
@@ -24,6 +25,7 @@ FocusScope {
             if (root.parent.currentItem === root) {
                 root.active = true
                 root.activated()
+                root.focus = true
             } else {
                 root.active = false
             }
