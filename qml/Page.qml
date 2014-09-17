@@ -37,6 +37,7 @@ FocusScope {
 
         height: childrenRect.height
         width: parent.width
+        focus: true
     }
 
     FocusScope {
@@ -48,5 +49,7 @@ FocusScope {
             left: parent.left
             right: parent.right
         }
+
+        focus: true
     }
 }
