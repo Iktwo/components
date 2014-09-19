@@ -7,7 +7,7 @@ class ScreenValues : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int dpi READ dpi WRITE setDpi NOTIFY dpiChanged)
-    Q_PROPERTY(float dpMultiplier READ dpMultiplier WRITE setDpMultiplier NOTIFY dpMultiplierChanged)
+    Q_PROPERTY(float dp READ dp WRITE setDp NOTIFY dpChanged)
     Q_PROPERTY(bool isTablet READ isTablet NOTIFY isTabletChanged)
 public:
     explicit ScreenValues(QObject *parent = 0);
@@ -15,20 +15,20 @@ public:
     int dpi() const;
     void setDpi(int dpi);
 
-    float dpMultiplier() const;
-    void setDpMultiplier(float dpMultiplier);
+    float dp() const;
+    void setDp(float dp);
 
     bool isTablet() const;
     void setIsTablet(bool isTablet);
 
 signals:
     void dpiChanged();
-    void dpMultiplierChanged();
+    void dpChanged();
     void isTabletChanged();
 
 private:
     int m_dpi;
-    float m_dpMultiplier;
+    float m_dp;
     bool m_isTablet;
 
     int retrieveDpi();

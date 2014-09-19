@@ -15,7 +15,7 @@ Item {
     objectName: "titleBar"
 
     width: parent.width
-    height: Math.ceil(ScreenValues.dpMultiplier * (ScreenValues.isTablet ? 56 : (isScreenPortrait ? 48 : 40)))
+    height: Math.ceil(ScreenValues.dp * (ScreenValues.isTablet ? 56 : (isScreenPortrait ? 48 : 40)))
 
     anchors.top: parent.top
 
@@ -29,16 +29,16 @@ Item {
             id: iconImage
 
             anchors {
-                left: parent.left; leftMargin: 4 * ScreenValues.dpMultiplier
+                left: parent.left; leftMargin: 4 * ScreenValues.dp
             }
 
             height: parent.height
-            width: ScreenValues.dpMultiplier * 48
+            width: ScreenValues.dp * 48
 
             Image {
                 anchors.centerIn: parent
-                height: 32 * ScreenValues.dpMultiplier
-                width: 32 * ScreenValues.dpMultiplier
+                height: 32 * ScreenValues.dp
+                width: 32 * ScreenValues.dp
                 source: iconSource != "" ? iconSource : ""
             }
         }
@@ -48,11 +48,11 @@ Item {
             id: titleLabel
 
             anchors {
-                left: iconSource != "" ? iconImage.right : parent.left; leftMargin: ScreenValues.dpMultiplier * (iconSource != "" ? 0 : 8)
+                left: iconSource != "" ? iconImage.right : parent.left; leftMargin: ScreenValues.dp * (iconSource != "" ? 0 : 8)
                 verticalCenter: parent.verticalCenter
             }
 
-            font.pixelSize: 18 * ScreenValues.dpMultiplier
+            font.pixelSize: 18 * ScreenValues.dp
 
             color: Theme.titleBarTextColor
         }

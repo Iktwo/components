@@ -11,8 +11,8 @@ Item {
 
     signal clicked
 
-    height: parent.objectName === "titleBar" ? parent.height : 48 * ScreenValues.dpMultiplier
-    width: 48 * ScreenValues.dpMultiplier
+    height: parent.objectName === "titleBar" ? parent.height : 48 * ScreenValues.dp
+    width: 48 * ScreenValues.dp
 
     Rectangle {
         id: highlighter
@@ -27,8 +27,8 @@ Item {
 
         anchors.centerIn: parent
 
-        height: 32 * ScreenValues.dpMultiplier
-        width: 32 * ScreenValues.dpMultiplier
+        height: 32 * ScreenValues.dp
+        width: 32 * ScreenValues.dp
 
         fillMode: Image.PreserveAspectFit
         antialiasing: true

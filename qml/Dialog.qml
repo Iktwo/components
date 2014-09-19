@@ -60,17 +60,17 @@ Item {
             Rectangle {
                 id: dialogTitleBar
 
-                height: Math.ceil(ScreenValues.dpMultiplier * (ScreenValues.isTablet ? 56 : (isScreenPortrait ? 48 : 40)))
+                height: Math.ceil(ScreenValues.dp * (ScreenValues.isTablet ? 56 : (isScreenPortrait ? 48 : 40)))
                 width: parent.width
             }
 
             DropShadow {
                 anchors.fill: dialogTitleBar
                 cached: true
-                verticalOffset: 2 * ScreenValues.dpMultiplier
-                radius: 2 * ScreenValues.dpMultiplier
+                verticalOffset: 2 * ScreenValues.dp
+                radius: 2 * ScreenValues.dp
                 transparentBorder: true
-                samples: 8 * ScreenValues.dpMultiplier
+                samples: 8 * ScreenValues.dp
                 color: "#88000000"
                 source: dialogTitleBar
             }
@@ -78,7 +78,7 @@ Item {
             Rectangle {
                 id: dialogTitleBarFiller
 
-                height: Math.ceil(ScreenValues.dpMultiplier * (ScreenValues.isTablet ? 56 : (isScreenPortrait ? 48 : 40)))
+                height: Math.ceil(ScreenValues.dp * (ScreenValues.isTablet ? 56 : (isScreenPortrait ? 48 : 40)))
                 width: parent.width
                 color: "#11b4ef"
 
@@ -87,14 +87,14 @@ Item {
 
                     anchors {
                         verticalCenter: parent.verticalCenter
-                        left: parent.left; leftMargin: 8 * ScreenValues.dpMultiplier
-                        right: parent.right; rightMargin: 8 * ScreenValues.dpMultiplier
+                        left: parent.left; leftMargin: 8 * ScreenValues.dp
+                        right: parent.right; rightMargin: 8 * ScreenValues.dp
                     }
 
                     color: "#f8fafc"
                     elide: "ElideRight"
 
-                    font.pixelSize: 14 * ScreenValues.dpMultiplier
+                    font.pixelSize: 14 * ScreenValues.dp
                 }
             }
 
@@ -106,7 +106,7 @@ Item {
                     left: parent.left
                     right: parent.right
                     bottom: buttonsContainer.top
-                    margins: 10 * ScreenValues.dpMultiplier
+                    margins: 10 * ScreenValues.dp
                 }
 
                 flickableItem.interactive: true; focus: true
@@ -116,11 +116,13 @@ Item {
 
                     anchors {
                         fill: parent
-                        margins: 2 * ScreenValues.dpMultiplier
+                        margins: 2 * ScreenValues.dp
                     }
 
                     contentHeight: labelMessage.height
                     clip: true
+
+                    interactive: root.opacity !== 0
 
                     Label {
                         id: labelMessage
@@ -128,7 +130,7 @@ Item {
                         anchors.horizontalCenter: parent.horizontalCenter
                         width: scrollView.width
 
-                        font.pixelSize: 14 * ScreenValues.dpMultiplier
+                        font.pixelSize: 14 * ScreenValues.dp
 
                         text: root.text
                         wrapMode: "Wrap"
@@ -145,10 +147,10 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    bottom: parent.bottom; bottomMargin: 10 * ScreenValues.dpMultiplier
+                    bottom: parent.bottom; bottomMargin: 10 * ScreenValues.dp
                 }
 
-                spacing: 5 * ScreenValues.dpMultiplier
+                spacing: 5 * ScreenValues.dp
             }
         }
     }

@@ -15,7 +15,7 @@ ScreenValues::ScreenValues(QObject *parent) :
 {
     m_dpi = retrieveDpi();
 
-    m_dpMultiplier = (float) m_dpi / 160;
+    m_dp = (float) m_dpi / 160;
 }
 
 int ScreenValues::dpi() const
@@ -31,21 +31,21 @@ void ScreenValues::setDpi(int dpi)
     m_dpi = dpi;
     emit dpiChanged();
 
-    setDpMultiplier((float) m_dpi / 160);
+    setDp((float) m_dpi / 160);
 }
 
-float ScreenValues::dpMultiplier() const
+float ScreenValues::dp() const
 {
-    return m_dpMultiplier;
+    return m_dp;
 }
 
-void ScreenValues::setDpMultiplier(float dpMultiplier)
+void ScreenValues::setDp(float dp)
 {
-    if (m_dpMultiplier == dpMultiplier)
+    if (m_dp == dp)
         return;
 
-    m_dpMultiplier = dpMultiplier;
-    emit dpMultiplierChanged();
+    m_dp = dp;
+    emit dpChanged();
 }
 
 bool ScreenValues::isTablet() const

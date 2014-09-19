@@ -15,7 +15,7 @@ Module {
         isCreatable: false
         isSingleton: true
         Property { name: "dpi"; type: "int" }
-        Property { name: "dpMultiplier"; type: "float" }
+        Property { name: "dp"; type: "float" }
         Property { name: "isTablet"; type: "bool"; isReadonly: true }
     }
     Component {
