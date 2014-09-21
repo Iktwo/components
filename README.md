@@ -9,3 +9,11 @@ Components:
 * ScreenValues - Singleton element to access screen dpi
 * Theme - Singleton element that allows customization
 * TitleBar - Title bar to display on top
+
+Requirements:
+
+To use this plugin on android, androidextras is required
+
+    android {
+        QT += androidextras
+    }
