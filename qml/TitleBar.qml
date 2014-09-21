@@ -11,6 +11,7 @@ Item {
     property alias titleLabel: titleLabel
     property alias titleColor: titleLabel.color
     property string iconSource
+    property bool isScreenPortrait: false
 
     objectName: "titleBar"
 
