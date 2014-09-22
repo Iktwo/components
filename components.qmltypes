@@ -2,11 +2,46 @@ import QtQuick.tooling 1.1
 
 Module {
     Component {
+        name: "ApplicationInfo"
+        prototype: "QObject"
+        exports: ["com.iktwo.components/ApplicationInfo 1.0"]
+        isCreatable: false
+        isSingleton: true
+        Property { name: "timesLaunched"; type: "int"; isReadonly: true }
+        Property { name: "firstTimeLaunched"; type: "QDate"; isReadonly: true }
+    }
+    Component {
         name: "ConnectivityManager"
         prototype: "QObject"
         exports: ["com.iktwo.components/ConnectivityManager 1.0"]
         Property { name: "connectionType"; type: "string"; isReadonly: true }
         Method { name: "retrieveConnectionType"; type: "string" }
+    }
+    Component {
+        name: "DownloadManager"
+        prototype: "QObject"
+        exports: ["com.iktwo.components/DownloadManager 1.0"]
+        Method {
+            name: "download"
+            Parameter { name: "url"; type: "string" }
+            Parameter { name: "name"; type: "string" }
+        }
+    }
+    Component {
+        name: "PackageManager"
+        prototype: "QObject"
+        exports: ["com.iktwo.components/PackageManager 1.0"]
+        Method {
+            name: "packageHasPermission"
+            type: "bool"
+            Parameter { name: "package"; type: "string" }
+            Parameter { name: "permission"; type: "string" }
+        }
+        Method {
+            name: "hasPermission"
+            type: "bool"
+            Parameter { name: "permission"; type: "string" }
+        }
     }
     Component {
         name: "ScreenValues"
