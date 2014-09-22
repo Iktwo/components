@@ -11,7 +11,7 @@ Item {
     property alias background: backgroundContainer.data
     property alias title: labelDialogTitle.text
     property alias content: dialogContainer.data
-    property alias titleBarColor: dialogTitleBarFiller.color
+    property color titleBarColor: Theme.titleBarColor
     property string text: ""
 
     function close() {
@@ -80,7 +80,7 @@ Item {
 
                 height: Math.ceil(ScreenValues.dp * (ScreenValues.isTablet ? 56 : (isScreenPortrait ? 48 : 40)))
                 width: parent.width
-                color: "#11b4ef"
+                color: root.titleBarColor
 
                 Label {
                     id: labelDialogTitle
@@ -110,6 +110,7 @@ Item {
                 }
 
                 flickableItem.interactive: true; focus: true
+                enabled: root.opacity !== 0
 
                 Flickable {
                     id: flickable

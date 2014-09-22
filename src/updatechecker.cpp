@@ -6,6 +6,7 @@
 
 #include <QNetworkRequest>
 #include <QDesktopServices>
+#include <QSettings>
 
 #ifdef Q_OS_ANDROID
 #include <QAndroidJniEnvironment>
@@ -21,6 +22,9 @@ UpdateChecker::UpdateChecker(QObject *parent) :
 {
     m_netAccess = new QNetworkAccessManager(this);
     connect(m_netAccess, SIGNAL(finished(QNetworkReply*)), SLOT(networkRequestFinished(QNetworkReply*)));
+
+    QSettings settings;
+    m_skippedVersion = settings.value("skippedVersion", "").toString();
 
     m_packageName = retrievePackageName();
     m_version = retrieveVersion();
@@ -111,6 +115,11 @@ void UpdateChecker::openPackageOnGooglePlay()
         QDesktopServices::openUrl("market://details?id=" + m_packageName);
 }
 
+void UpdateChecker::skipLatestVersion()
+{
+    setSkippedVersion(m_latestVersion);
+}
+
 QString UpdateChecker::packageName() const
 {
     return m_packageName;
@@ -151,6 +160,24 @@ void UpdateChecker::setLatestVersion(const QString &latestVersion)
 
     m_latestVersion = latestVersion;
     emit latestVersionChanged();
+}
+
+QString UpdateChecker::skippedVersion() const
+{
+    return m_skippedVersion;
+}
+
+void UpdateChecker::setSkippedVersion(const QString &skippedVersion)
+{
+    if (m_skippedVersion == skippedVersion)
+        return;
+
+    m_skippedVersion = skippedVersion;
+
+    QSettings settings;
+    settings.setValue("skippedVersion", m_skippedVersion);
+
+    emit skippedVersionChanged();
 }
 
 void UpdateChecker::networkRequestFinished(QNetworkReply *reply)

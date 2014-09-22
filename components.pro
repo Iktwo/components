@@ -37,13 +37,15 @@ HEADERS += \
     src/applicationinfo.h
 
 OTHER_FILES = qmldir \
+    qml/Dialog.qml \
+    qml/FlatButtonStyle.qml \
     qml/ImageButton.qml \
     qml/ItemHighlighter.qml \
     qml/Page.qml \
     qml/SubtractMask.qml \
     qml/Theme.qml \
     qml/TitleBar.qml \
-    qml/Dialog.qml \
+    qml/UpdateDialog.qml \
     README.md \
     components.qmltypes
 
