@@ -13,6 +13,7 @@
 #endif
 
 const char *GooglePlayURL = "https://play.google.com/store/apps/details?id=";
+const char *GooglePlayDevURL = "https://play.google.com/store/apps/developer?id=";
 const char *URLLanguage = "&hl=en";
 
 UpdateChecker::UpdateChecker(QObject *parent) :
@@ -180,3 +181,6 @@ void UpdateChecker::networkRequestFinished(QNetworkReply *reply)
     if (!html.isEmpty())
         setLatestVersion(html);
 }
+
+/// TODO: get package info - for a given package retrieve icon and name
+/// TODO: get developer applications - retrieve all applications for a developer - https://play.google.com/store/apps/developer?id=Iktwo
