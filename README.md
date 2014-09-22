@@ -12,7 +12,7 @@ Components:
 
 Requirements:
 
-To use this plugin on android, androidextras is required
+* Android: androidextras is required
 
     android {
         QT += androidextras
