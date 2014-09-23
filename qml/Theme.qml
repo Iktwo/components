@@ -6,6 +6,7 @@ QtObject {
     property color titleBarTextColor: "#ffffff"
     property color backgroundColor: "#e5e5e5"
     property color mainTextColor: "#545454"
+    property string fontFamily: "Sans Serif"
 
     function getContrastColor(color){
         var colorStr = color.toString().substr(1)
