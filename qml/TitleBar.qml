@@ -53,7 +53,10 @@ Item {
                 verticalCenter: parent.verticalCenter
             }
 
-            font.pixelSize: 18 * ScreenValues.dp
+            font {
+                pixelSize: 18 * ScreenValues.dp
+                family: Theme.fontFamily
+            }
 
             color: Theme.titleBarTextColor
         }

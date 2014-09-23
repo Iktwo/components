@@ -94,7 +94,10 @@ Item {
                     color: "#f8fafc"
                     elide: "ElideRight"
 
-                    font.pixelSize: 14 * ScreenValues.dp
+                    font {
+                        pixelSize: 14 * ScreenValues.dp
+                        family: Theme.fontFamily
+                    }
                 }
             }
 
@@ -131,7 +134,10 @@ Item {
                         anchors.horizontalCenter: parent.horizontalCenter
                         width: scrollView.width
 
-                        font.pixelSize: 14 * ScreenValues.dp
+                        font {
+                            pixelSize: 14 * ScreenValues.dp
+                            family: Theme.fontFamily
+                        }
 
                         text: root.text
                         wrapMode: "Wrap"
