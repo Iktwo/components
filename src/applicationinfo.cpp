@@ -4,10 +4,13 @@
 
 ApplicationInfo::ApplicationInfo(QObject *parent) :
     QObject(parent),
-    m_timesLaunched(0)
+    m_timesLaunched(0),
+    m_hasShownInitialDialog(false)
 {
     QSettings settings;
     m_timesLaunched = settings.value("timesLaunched", 0).toInt();
+    m_hasShownInitialDialog = settings.value("hasShownInitialDialog", false).toBool();
+
     m_firstTimeLaunched = settings.value("firstTimeLaunched", QDate::fromString("20000101", "yyyyMMdd")).toDate();
 
     if (m_firstTimeLaunched.toString("yyyyMMdd") == "20000101")
@@ -51,3 +54,22 @@ void ApplicationInfo::setFirstTimeLaunched(const QDate &firstTimeLaunched)
 
     emit firstTimeLaunchedChanged();
 }
+
+bool ApplicationInfo::hasShownInitialDialog() const
+{
+    return m_hasShownInitialDialog;
+}
+
+void ApplicationInfo::setHasShownInitialDialog(bool hasShownInitialDialog)
+{
+    if (m_hasShownInitialDialog == hasShownInitialDialog)
+        return;
+
+    m_hasShownInitialDialog = hasShownInitialDialog;
+
+    QSettings settings;
+    settings.setValue("hasShownInitialDialog", m_hasShownInitialDialog);
+
+    emit hasShownInitialDialogChanged();
+}
+

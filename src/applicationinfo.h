@@ -10,6 +10,7 @@ class ApplicationInfo : public QObject
 
     Q_PROPERTY(int timesLaunched READ timesLaunched NOTIFY timesLaunchedChanged)
     Q_PROPERTY(QDate firstTimeLaunched READ firstTimeLaunched NOTIFY firstTimeLaunchedChanged)
+    Q_PROPERTY(bool hasShownInitialDialog READ hasShownInitialDialog WRITE setHasShownInitialDialog NOTIFY hasShownInitialDialogChanged)
 
 public:
     explicit ApplicationInfo(QObject *parent = 0);
@@ -20,13 +21,18 @@ public:
     QDate firstTimeLaunched() const;
     void setFirstTimeLaunched(const QDate &firstTimeLaunched);
 
+    bool hasShownInitialDialog() const;
+    void setHasShownInitialDialog(bool hasShownInitialDialog);
+
 signals:
     void timesLaunchedChanged();
     void firstTimeLaunchedChanged();
+    void hasShownInitialDialogChanged();
 
 private:
     int m_timesLaunched;
     QDate m_firstTimeLaunched;
+    bool m_hasShownInitialDialog;
 
 };
 

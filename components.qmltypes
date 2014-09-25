@@ -9,6 +9,7 @@ Module {
         isSingleton: true
         Property { name: "timesLaunched"; type: "int"; isReadonly: true }
         Property { name: "firstTimeLaunched"; type: "QDate"; isReadonly: true }
+        Property { name: "hasShownInitialDialog"; type: "bool"; isReadonly: true }
     }
     Component {
         name: "ConnectivityManager"
