@@ -6,6 +6,8 @@ QtObject {
     property color titleBarTextColor: "#ffffff"
     property color backgroundColor: "#e5e5e5"
     property color mainTextColor: "#545454"
+    property color activeSwitchColor: "#3498db"
+    property color inactiveSwitchColor: "#82888c"
     property string fontFamily: ""
 
     function getContrastColor(color){

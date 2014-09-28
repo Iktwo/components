@@ -4,6 +4,7 @@ singleton Theme 1.0 qml/Theme.qml
 
 Dialog 1.0 qml/Dialog.qml
 FlatButtonStyle 1.0 qml/FlatButtonStyle.qml
+FlatSwitchStyle 1.0 qml/FlatSwitchStyle.qml
 ImageButton 1.0 qml/ImageButton.qml
 ItemHighlighter 1.0 qml/ItemHighlighter.qml
 Page 1.0 qml/Page.qml
