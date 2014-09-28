@@ -11,6 +11,8 @@ android {
 
     HEADERS += \
         src/jniutils.h
+
+    CONFIG -= android_install
 }
 
 CONFIG += qt plugin
