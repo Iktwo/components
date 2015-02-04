@@ -11,7 +11,7 @@ Item {
     property alias titleLabel: titleLabel
     property alias titleColor: titleLabel.color
     property string iconSource
-    property bool isScreenPortrait: false
+    property bool isScreenPortrait: parent.parent.objectName === "Page" ? (parent.parent.height > parent.parent.width) : false
 
     objectName: "titleBar"
 

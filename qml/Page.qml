@@ -10,6 +10,8 @@ FocusScope {
     signal activated
     signal currentItemChanged
 
+    objectName: "Page"
+
     Component.onCompleted: {
         if (root.parent === null || root.parent.toString().substring(0, 9) !== "StackView") {
             root.activated()
