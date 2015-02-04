@@ -1,6 +1,12 @@
 #include "applicationinfo.h"
 
 #include <QSettings>
+#include <QDebug>
+
+#ifdef Q_OS_ANDROID
+#include <QAndroidJniEnvironment>
+#include <QAndroidJniObject>
+#endif
 
 ApplicationInfo::ApplicationInfo(QObject *parent) :
     QObject(parent),
@@ -16,6 +22,7 @@ ApplicationInfo::ApplicationInfo(QObject *parent) :
     if (m_firstTimeLaunched.toString("yyyyMMdd") == "20000101")
         setFirstTimeLaunched(QDate::currentDate());
 
+    m_OSVersion = getOSVersion();
     setTimesLaunched(m_timesLaunched + 1);
 }
 
@@ -71,5 +78,29 @@ void ApplicationInfo::setHasShownInitialDialog(bool hasShownInitialDialog)
     settings.setValue("hasShownInitialDialog", m_hasShownInitialDialog);
 
     emit hasShownInitialDialogChanged();
+}
+
+int ApplicationInfo::OSVersion() const
+{
+    return m_OSVersion;
+}
+
+void ApplicationInfo::setOSVersion(int version)
+{
+    if (m_OSVersion == version)
+        return;
+
+    m_OSVersion = version;
+    emit OSVersionChanged();
+}
+
+int ApplicationInfo::getOSVersion()
+{
+#ifdef Q_OS_ANDROID
+    jint version = QAndroidJniObject::getStaticField<jint>("android.os.Build$VERSION", "SDK_INT");
+    return version;
+#else
+    return -1;
+#endif
 }
 
