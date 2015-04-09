@@ -16,7 +16,7 @@ Item {
     objectName: "titleBar"
 
     width: parent.width
-    height: Math.ceil(ScreenValues.dp * (ScreenValues.isTablet ? 56 : (isScreenPortrait ? 48 : 40)))
+    height: Math.ceil(ScreenValues.dp * (ScreenValues.isTablet ? 56 : (isScreenPortrait ? (ApplicationInfo.OSVersion >= 21 ? 56 : 48) : (ApplicationInfo.OSVersion >= 21 ? 48 : 40))))
 
     anchors.top: parent.top
 
