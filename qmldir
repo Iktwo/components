@@ -5,8 +5,10 @@ singleton Theme 1.0 qml/Theme.qml
 Dialog 1.0 qml/Dialog.qml
 FlatButtonStyle 1.0 qml/FlatButtonStyle.qml
 FlatSwitchStyle 1.0 qml/FlatSwitchStyle.qml
+FontsLoader 1.0 qml/FontsLoader.qml
 ImageButton 1.0 qml/ImageButton.qml
 ItemHighlighter 1.0 qml/ItemHighlighter.qml
+Label 1.0 qml/Label.qml
 Page 1.0 qml/Page.qml
 SubtractMask 1.0 qml/SubtractMask.qml
 TitleBar 1.0 qml/TitleBar.qml
