@@ -20,9 +20,7 @@ QtObject {
     }
 
     function getBestIconSize(height) {
-        if (height < 42)
-            return "ldpi/"
-        else if (height < 60)
+        if (height < 60)
             return "mdpi/"
         else if (height < 84)
             return "hdpi/"
@@ -32,8 +30,6 @@ QtObject {
             return "xxhdpi/"
         else if (height < 216)
             return "xxxhdpi/"
-        else
-            return "";
     }
 
     function nextNumericState(object) {
