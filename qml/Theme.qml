@@ -30,6 +30,8 @@ QtObject {
             return "xxhdpi/"
         else if (height < 216)
             return "xxxhdpi/"
+        else
+            return ""
     }
 
     function nextNumericState(object) {
